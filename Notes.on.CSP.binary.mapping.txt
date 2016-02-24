@@ -9,3 +9,10 @@ eg [0,1]
 Node
 Egdes to 	Edge[]
 Egdes from	Edge[]
+
+=================================================
+BY end of next Meeting
+	Bayes Net Data Structure
+	Read from input to make the Bayes Net
+		Parents (Edge Implementation)
+		CPT (Binary Table Implementation)
