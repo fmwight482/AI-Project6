@@ -1,5 +1,8 @@
 package project6;
-//test for conflicts
+
+/**
+ * main class for bayes net program
+ */
 public class makeBayesNet {
 
 	public static void main(String[] args) {
