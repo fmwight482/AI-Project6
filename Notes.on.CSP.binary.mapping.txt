@@ -1,0 +1,11 @@
+CPT is proabaility given state
+eg [0,1]
+
+00	FF 	given this inpur from parents probability of true =0
+01	TF	given this inpur from parents probability of true =1
+
+
+//Edge Usage
+Node
+Egdes to 	Edge[]
+Egdes from	Edge[]
