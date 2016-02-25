@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public abstract class absBayesNode {
 	private ArrayList<Edge> edgesTo;
 	private ArrayList<Edge> edgesFrom;
-	private int[] cpt;
+	private ArrayList<Integer> cpt;
 	/**
 	 * adds a CPT value 
 	 */
