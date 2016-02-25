@@ -10,6 +10,16 @@ public abstract class absBayesNode {
 	private ArrayList<Edge> edgesTo;
 	protected ArrayList<Edge> edgesFrom;
 	private ArrayList<Integer> cpt;
+	
+	/**
+	 * standard constructor
+	 */
+	public absBayesNode() {
+		edgesTo = new ArrayList<Edge>();
+		edgesFrom = new ArrayList<Edge>();
+		cpt = new ArrayList<Integer>();
+	}
+	
 	/**
 	 * adds the given CPT value to cpt list
 	 * @param newCPT
