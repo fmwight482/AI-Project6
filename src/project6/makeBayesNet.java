@@ -51,7 +51,7 @@ public class makeBayesNet {
 					nodes.add(new EvidenceNode(false));
 				}
 				else if (val.equalsIgnoreCase("-")) {
-					nodes.add(new MTNode());
+					nodes.add(new UnknownNode());
 				}
 				else if (val.equalsIgnoreCase("?")) {
 					nodes.add(new QueryNode());
