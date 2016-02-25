@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.StringTokenizer;
+import java.util.ArrayList;
 
 /**
  * main class for bayes net program
@@ -24,9 +24,16 @@ public class makeBayesNet {
 		File queryFile = new File(args[1]);
 		int numSamples = Integer.parseInt(args[2]);
 		
+		ArrayList<absBayesNode> nodes = new ArrayList<absBayesNode>();
+		
 		BufferedReader queryReader = null;
+		BufferedReader networkReader = null;
 		
 		try {
+			networkReader = new BufferedReader(new FileReader(networkFile));
+			// initialize each node
+			//String[] network = networkReader.lines().sp
+			
 			queryReader = new BufferedReader(new FileReader(queryFile));
 			String[] query = queryReader.readLine().split(",");
 			for (int i=0; i<query.length; i++) {
