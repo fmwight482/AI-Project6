@@ -60,6 +60,10 @@ public class makeBayesNet {
 					throw new BayesNetException("read value '" + val + "' is not valid");
 				}
 			}
+			
+			for (int i=0; i<network.size(); i++) {
+				// fill each node with the appropriate probabilities and parents
+			}
 		}
 		catch (FileNotFoundException e) {
 			e.printStackTrace();
