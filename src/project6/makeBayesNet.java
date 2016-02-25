@@ -25,19 +25,40 @@ public class makeBayesNet {
 		int numSamples = Integer.parseInt(args[2]);
 		
 		ArrayList<absBayesNode> nodes = new ArrayList<absBayesNode>();
+		ArrayList<String> network = new ArrayList<String>();
 		
 		BufferedReader queryReader = null;
 		BufferedReader networkReader = null;
 		
+		String text = null;
+		
 		try {
 			networkReader = new BufferedReader(new FileReader(networkFile));
 			// initialize each node
-			//String[] network = networkReader.lines().sp
+			while ((text = networkReader.readLine()) != null) {
+				network.add(text);
+			}
 			
 			queryReader = new BufferedReader(new FileReader(queryFile));
 			String[] query = queryReader.readLine().split(",");
 			for (int i=0; i<query.length; i++) {
 				// assign value to appropriate node
+				String val = query[i];
+				if (val.equalsIgnoreCase("t")) {
+					nodes.add(new EvidenceNode(true));
+				}
+				else if (val.equalsIgnoreCase("f")) {
+					nodes.add(new EvidenceNode(false));
+				}
+				else if (val.equalsIgnoreCase("-")) {
+					nodes.add(new MTNode());
+				}
+				else if (val.equalsIgnoreCase("?")) {
+					nodes.add(new QueryNode());
+				}
+				else {
+					throw new BayesNetException("read value '" + val + "' is not valid");
+				}
 			}
 		}
 		catch (FileNotFoundException e) {
