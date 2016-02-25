@@ -5,7 +5,15 @@ package project6;
  */
 public class EvidenceNode extends absBayesNode implements IBayesNode {
 	private boolean value;
-	//TODO Constructor
+	
+	/**
+	 * standard constructor for EvidenceNode
+	 * @param aVal
+	 */
+	public EvidenceNode(boolean aVal) {
+		super();
+		value = aVal;
+	}
 	
 	/**
 	 * 
