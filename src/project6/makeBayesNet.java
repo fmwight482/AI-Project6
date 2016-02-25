@@ -72,6 +72,9 @@ public class makeBayesNet {
 				if (queryReader != null) {
 					queryReader.close();
 				}
+				if (networkReader != null) {
+					networkReader.close();
+				}
 			}
 			catch (IOException e) {
 				
