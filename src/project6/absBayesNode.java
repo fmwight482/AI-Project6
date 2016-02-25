@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public abstract class absBayesNode {
 	private ArrayList<Edge> edgesTo;
 	private ArrayList<Edge> edgesFrom;
-	
+	private int[] binaryRepresentation;
 	/**
 	 * add the given edge to edgesTo
 	 * @param anEdge
