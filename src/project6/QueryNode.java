@@ -21,6 +21,9 @@ public class QueryNode extends absBayesNode implements IBayesNode {
 			count++;
 		}//end for loop
 		//look through CPT to find a true condition in cpt
+		for(int val : cpt){
+			
+		}
 		//value = thisValue;
 		return thisValue;
 	}
