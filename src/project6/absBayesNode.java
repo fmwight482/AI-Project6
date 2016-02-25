@@ -11,7 +11,8 @@ public abstract class absBayesNode {
 	private ArrayList<Edge> edgesFrom;
 	private ArrayList<Integer> cpt;
 	/**
-	 * adds a CPT value 
+	 * adds the given CPT value to cpt list
+	 * @param newCPT
 	 */
 	public void addCPT(int newCPT){
 		cpt.add(newCPT);
