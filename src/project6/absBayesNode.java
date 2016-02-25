@@ -14,7 +14,7 @@ public abstract class absBayesNode {
 	 * adds a CPT value 
 	 */
 	public void addCPT(int newCPT){
-		
+		cpt.add(newCPT);
 	}
 	/**
 	 * add the given edge to edgesTo
