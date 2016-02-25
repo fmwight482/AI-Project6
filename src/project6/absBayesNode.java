@@ -17,6 +17,7 @@ public abstract class absBayesNode {
 	public void addCPT(int newCPT){
 		cpt.add(newCPT);
 	}
+	
 	/**
 	 * add the given edge to edgesTo
 	 * @param anEdge
@@ -45,5 +46,15 @@ public abstract class absBayesNode {
 	 */
 	public ArrayList<Edge> getEdgesTo() {
 		return edgesTo;
+	}
+	/**
+	 * Returns if this node is true given the value of each parent
+	 * @return thisValue
+	 */
+	public boolean isTrue(boolean[] parentValues){
+		boolean thisValue = false;
+		//look through CPT to find a true condition
+		return thisValue;
+		
 	}
 }
