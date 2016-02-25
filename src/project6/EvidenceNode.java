@@ -6,13 +6,18 @@ package project6;
 public class EvidenceNode extends absBayesNode implements IBayesNode {
 	
 	/**
-	 * Returns if this node is true given the value of each parent
+	 * Returns if this node is true from the value of each parent
 	 * @return thisValue
 	 */
 	public boolean isTrue(){
-		//get parent values from edges
 		boolean thisValue = false;
-		//look through CPT to find a true condition
+		//get parent values from edgesFrom
+		//construct a value from the truth of the parents
+		for(Edge parent : edgesFrom){
+			
+		}//end for loop
+		
+		//look through CPT to find a true condition in cpt
 		return thisValue;
 	}
 	
