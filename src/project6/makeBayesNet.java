@@ -34,7 +34,7 @@ public class makeBayesNet {
 		
 		try {
 			networkReader = new BufferedReader(new FileReader(networkFile));
-			// initialize each node
+			// record info from the text file
 			while ((text = networkReader.readLine()) != null) {
 				network.add(text);
 			}
@@ -42,7 +42,7 @@ public class makeBayesNet {
 			queryReader = new BufferedReader(new FileReader(queryFile));
 			String[] query = queryReader.readLine().split(",");
 			for (int i=0; i<query.length; i++) {
-				// assign value to appropriate node
+				// initialize each node as the appropriate type
 				String val = query[i];
 				if (val.equalsIgnoreCase("t")) {
 					nodes.add(new EvidenceNode(true));
@@ -61,8 +61,11 @@ public class makeBayesNet {
 				}
 			}
 			
+			// fill each node with the appropriate probabilities and parent
 			for (int i=0; i<network.size(); i++) {
-				// fill each node with the appropriate probabilities and parents
+				// parse input from network text file into useful values
+				String s = network.get(i);
+				
 			}
 		}
 		catch (FileNotFoundException e) {
