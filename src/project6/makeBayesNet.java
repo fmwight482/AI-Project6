@@ -25,7 +25,7 @@ public class makeBayesNet {
 		File queryFile = new File(args[1]);
 		int numSamples = Integer.parseInt(args[2]);
 		
-		ArrayList<absBayesNode> nodes = new ArrayList<absBayesNode>();
+		ArrayList<IBayesNode> nodes = new ArrayList<IBayesNode>();
 		ArrayList<String> network = new ArrayList<String>();
 		
 		BufferedReader queryReader = null;
@@ -81,7 +81,8 @@ public class makeBayesNet {
 							//System.out.println("parentNodes[" + j + "] = " + parentNodes[j]);
 							int nodeNum = Character.getNumericValue(parentNodes[j].charAt(parentNodes[j].length() - 1));
 							System.out.println("nodeNum = " + nodeNum);
-							//Edge edge = new Edge
+							Edge edge = new Edge(nodes.get(j), nodes.get(i));
+							
 						}
 					}
 				}
