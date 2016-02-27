@@ -92,7 +92,10 @@ public class makeBayesNet {
 				
 				// split string of probabilities
 				String[] splitProbs = probs.split(" ");
-				
+				for (int k=0; k<splitProbs.length; k++) {
+					double prob = Double.parseDouble(splitProbs[k]);
+					nodes.get(k).addCPT(prob);
+				}
 			}
 		}
 		catch (FileNotFoundException e) {

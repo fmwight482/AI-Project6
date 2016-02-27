@@ -12,7 +12,7 @@ public interface IBayesNode {
 	 * adds the given CPT value to cpt list
 	 * @param newCPT
 	 */
-	public void addCPT(int newCPT);
+	public void addCPT(double newCPT);
 	
 	/**
 	 * add the given edge to edgesTo
