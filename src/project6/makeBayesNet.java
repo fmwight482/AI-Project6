@@ -94,6 +94,8 @@ public class makeBayesNet {
 				String[] splitProbs = probs.split(" ");
 				for (int k=0; k<splitProbs.length; k++) {
 					double prob = Double.parseDouble(splitProbs[k]);
+					// add probs to the cpt list in order, such that the index of each probability
+					// corresponds to the binary representation of the cpt table state
 					nodes.get(k).addCPT(prob);
 				}
 			}
