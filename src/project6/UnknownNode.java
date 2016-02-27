@@ -21,6 +21,7 @@ public class UnknownNode extends absBayesNode implements IBayesNode {
 			return value;
 		} else {
 			boolean thisValue = false;
+			double prob = 0;
 			int count = 0;
 			int parentVal = 0;
 			// get parent values from edgesFrom
@@ -33,8 +34,10 @@ public class UnknownNode extends absBayesNode implements IBayesNode {
 				count++;
 			} // end for loop
 			count = 0;
-			for (int c : cpt) {
-				if (c == parentVal) {
+			for (double c : cpt) {
+				// count corresponds with the index AND the integer representation of the cpt table state
+				if (count == parentVal) {
+					prob = c;
 					thisValue = false ;//makeVal(prob.get(count));
 					// look through truth list
 				}
