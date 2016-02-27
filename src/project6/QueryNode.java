@@ -15,7 +15,7 @@ public class QueryNode extends absBayesNode implements IBayesNode {
 		//get parent values from edgesFrom
 		//construct a value from the truth of the parents
 		for(Edge e : edgesFrom){			
-			if(true		/*//parent.parent.;//TODO get boolean values from parent*/){
+			if(e.getParent().isTrue()){
 				parentVal= 1 << count;//set the bit associated with the parent
 			}			
 			count++;
