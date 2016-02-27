@@ -7,13 +7,18 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  * main class for bayes net program
  */
 public class makeBayesNet {
+	static Random rand = new Random();
 
 	public static void main(String[] args) throws BayesNetException {
+		// for "real" runs, seed with time in milliseconds
+		rand.setSeed(System.currentTimeMillis());
+		
 		// TODO Auto-generated method stub
 		// args 0 = network file
 		// args 1 = query file
