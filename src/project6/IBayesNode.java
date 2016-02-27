@@ -9,6 +9,12 @@ public interface IBayesNode {
 	public boolean isTrue();
 	
 	/**
+	 * adds the given CPT value to cpt list
+	 * @param newCPT
+	 */
+	public void addCPT(int newCPT);
+	
+	/**
 	 * add the given edge to edgesTo
 	 * @param anEdge
 	 */
