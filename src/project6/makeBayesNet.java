@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * main class for bayes net program
@@ -65,7 +66,25 @@ public class makeBayesNet {
 			for (int i=0; i<network.size(); i++) {
 				// parse input from network text file into useful values
 				String s = network.get(i);
+				String parentString = s.substring(s.indexOf("[") + 1, s.indexOf("]"));
+				String probs = s.substring(s.lastIndexOf("[") + 1, s.lastIndexOf("]"));
+				// test that substrings are correct
+				System.out.println("s = " + s);
+				System.out.println("parentString = " + parentString);
+				System.out.println("probs = " + probs);
 				
+				String[] parentNodes = parentString.split(" ");
+				System.out.println("parentNodes = " + Arrays.toString(parentNodes) + ", length = " + parentNodes.length);
+				if (parentNodes.length > 0) {
+					for (int j=0; j<parentNodes.length; j++) {
+						if (parentNodes[j].length() > 0) {
+							//System.out.println("parentNodes[" + j + "] = " + parentNodes[j]);
+							int nodeNum = Character.getNumericValue(parentNodes[j].charAt(parentNodes[j].length() - 1));
+							System.out.println("nodeNum = " + nodeNum);
+							//Edge edge = new Edge
+						}
+					}
+				}
 			}
 		}
 		catch (FileNotFoundException e) {
