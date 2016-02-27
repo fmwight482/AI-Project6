@@ -1,7 +1,7 @@
 package project6;
 
 /**
- * class representing an evidence variable node in a bayes net
+ * class representing an evidence variable node in a bayes net; either True or False
  */
 public class EvidenceNode extends absBayesNode implements IBayesNode {
 	private boolean value;
@@ -23,4 +23,12 @@ public class EvidenceNode extends absBayesNode implements IBayesNode {
 		return value;
 	}
 	
+	/**
+	 * 
+	 * @return value
+	 */
+	@Override
+	public boolean isTrue() {
+		return value;
+	}
 }

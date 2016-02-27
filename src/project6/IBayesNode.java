@@ -6,5 +6,5 @@ package project6;
  *
  */
 public interface IBayesNode {
-	
+	public boolean isTrue();
 }
