@@ -22,5 +22,11 @@ public class EvidenceNode extends absBayesNode implements IBayesNode {
 	public boolean getVal(){
 		return value;
 	}
+
+	@Override
+	public boolean isTrue() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 }
