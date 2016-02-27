@@ -73,19 +73,26 @@ public class makeBayesNet {
 				System.out.println("parentString = " + parentString);
 				System.out.println("probs = " + probs);
 				
+				// split string of parent nodes
 				String[] parentNodes = parentString.split(" ");
 				System.out.println("parentNodes = " + Arrays.toString(parentNodes) + ", length = " + parentNodes.length);
 				if (parentNodes.length > 0) {
 					for (int j=0; j<parentNodes.length; j++) {
 						if (parentNodes[j].length() > 0) {
-							//System.out.println("parentNodes[" + j + "] = " + parentNodes[j]);
+							// extract node number from string
 							int nodeNum = Character.getNumericValue(parentNodes[j].charAt(parentNodes[j].length() - 1));
 							System.out.println("nodeNum = " + nodeNum);
+							// create edge between nodes, add it to each node
 							Edge edge = new Edge(nodes.get(j), nodes.get(i));
-							
+							nodes.get(j).addEdgeFrom(edge);
+							nodes.get(i).addEdgeTo(edge);
 						}
 					}
 				}
+				
+				// split string of probabilities
+				String[] splitProbs = probs.split(" ");
+				
 			}
 		}
 		catch (FileNotFoundException e) {
