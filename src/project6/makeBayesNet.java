@@ -51,16 +51,16 @@ public class makeBayesNet {
 				// initialize each node as the appropriate type
 				String val = query[i];
 				if (val.equalsIgnoreCase("t")) {
-					nodes.add(new EvidenceNode(true));
+					nodes.add(new EvidenceNode(true, rand));
 				}
 				else if (val.equalsIgnoreCase("f")) {
-					nodes.add(new EvidenceNode(false));
+					nodes.add(new EvidenceNode(false, rand));
 				}
 				else if (val.equalsIgnoreCase("-")) {
-					nodes.add(new UnknownNode());
+					nodes.add(new UnknownNode(rand));
 				}
 				else if (val.equalsIgnoreCase("?")) {
-					nodes.add(new QueryNode());
+					nodes.add(new QueryNode(rand));
 				}
 				else {
 					throw new BayesNetException("read value '" + val + "' is not valid");
