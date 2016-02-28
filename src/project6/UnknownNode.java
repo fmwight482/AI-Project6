@@ -1,5 +1,7 @@
 package project6;
 
+import java.util.Random;
+
 public class UnknownNode extends absBayesNode implements IBayesNode {
 	private boolean hasVal;
 	private boolean value;
@@ -9,6 +11,15 @@ public class UnknownNode extends absBayesNode implements IBayesNode {
 	 */
 	public UnknownNode() {
 		super();
+		hasVal = false;
+	}
+	
+	/**
+	 * constructor with random number generator passed in
+	 * @param aRand
+	 */
+	public UnknownNode(Random aRand) {
+		super(aRand);
 		hasVal = false;
 	}
 	

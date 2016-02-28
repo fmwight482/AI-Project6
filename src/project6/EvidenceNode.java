@@ -1,5 +1,7 @@
 package project6;
 
+import java.util.Random;
+
 /**
  * class representing an evidence variable node in a bayes net; either True or False
  */
@@ -12,6 +14,16 @@ public class EvidenceNode extends absBayesNode implements IBayesNode {
 	 */
 	public EvidenceNode(boolean aVal) {
 		super();
+		value = aVal;
+	}
+	
+	/**
+	 * constructor with random number generator passed in
+	 * @param aVal
+	 * @param aRand
+	 */
+	public EvidenceNode(boolean aVal, Random aRand) {
+		super(aRand);
 		value = aVal;
 	}
 	

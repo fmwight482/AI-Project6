@@ -1,6 +1,7 @@
 package project6;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * abstract class representing a node in a bayes net. Contains a list of edges 
@@ -10,6 +11,7 @@ public abstract class absBayesNode {
 	private ArrayList<Edge> edgesTo;
 	protected ArrayList<Edge> edgesFrom;
 	protected ArrayList<Double> cpt;
+	private Random rand;
 	
 	/**
 	 * standard constructor
@@ -18,6 +20,17 @@ public abstract class absBayesNode {
 		edgesTo = new ArrayList<Edge>();
 		edgesFrom = new ArrayList<Edge>();
 		cpt = new ArrayList<Double>();
+	}
+	
+	/**
+	 * constructor with Random number generator passed in
+	 * @param aRand
+	 */
+	public absBayesNode(Random aRand) {
+		edgesTo = new ArrayList<Edge>();
+		edgesFrom = new ArrayList<Edge>();
+		cpt = new ArrayList<Double>();
+		rand = aRand;
 	}
 	
 	/**
