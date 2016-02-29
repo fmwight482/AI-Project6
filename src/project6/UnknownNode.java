@@ -68,7 +68,17 @@ public class UnknownNode extends absBayesNode implements IBayesNode {
 	
 	public double getProbability() {
 		double val = 0;
-		
+		if (cpt.isEmpty()) {
+			System.err.println("Cannot get probability for node because cpt table is empty");
+		}
+		else if (cpt.size() == 1) {
+			val = cpt.get(0);
+		}
+		else {
+			// get list of probabilities of parent nodes
+			// compare number of probabilities with size of cpt table to determine compatability
+			// if numbers line up, find and sum the probabilities for each cpt state
+		}
 		return val;
 	}
 	

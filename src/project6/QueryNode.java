@@ -45,4 +45,9 @@ public class QueryNode extends absBayesNode implements IBayesNode {
 		//value = thisValue;
 		return thisValue;
 	}
+	
+	public double getProbability() {
+		// TODO: properly implement this function
+		return 0;
+	}
 }
