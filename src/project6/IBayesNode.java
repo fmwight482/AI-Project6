@@ -7,7 +7,12 @@ package project6;
  */
 public interface IBayesNode {
 	public boolean isTrue();
-	public double getValue();
+	
+	/**
+	 * calculate the probability that the node is true
+	 * @return a double denoting the probability that this node is true
+	 */
+	public double getProbability();
 	
 	/**
 	 * adds the given CPT value to cpt list

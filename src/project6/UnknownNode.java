@@ -27,7 +27,7 @@ public class UnknownNode extends absBayesNode implements IBayesNode {
 	 * 
 	 */
 	@Override
-	public boolean isTrue() {		
+	public boolean isTrue() {
 		if (hasVal) {
 			return value;
 		} else {
@@ -60,6 +60,16 @@ public class UnknownNode extends absBayesNode implements IBayesNode {
 			return thisValue;
 		}
 
+	}
+	
+	public boolean vetVal() {
+		return value;
+	}
+	
+	public double getProbability() {
+		double val = 0;
+		
+		return val;
 	}
 	
 }
