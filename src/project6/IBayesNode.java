@@ -7,6 +7,7 @@ package project6;
  */
 public interface IBayesNode {
 	public boolean isTrue();
+	public double getValue();
 	
 	/**
 	 * adds the given CPT value to cpt list
