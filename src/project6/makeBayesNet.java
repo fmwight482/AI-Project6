@@ -42,7 +42,7 @@ public class makeBayesNet {
 				// initialize each node as the appropriate type
 				String val = query[i];
 				String name = network.get(i).substring(0, 5);
-				System.out.println("Name = " + name);
+				//System.out.println("Name = " + name);
 				if (val.equalsIgnoreCase("t")) {
 					nodes.add(new EvidenceNode(true, rand, name));
 				}
@@ -67,19 +67,19 @@ public class makeBayesNet {
 				String parentString = s.substring(s.indexOf("[") + 1, s.indexOf("]"));
 				String probs = s.substring(s.lastIndexOf("[") + 1, s.lastIndexOf("]"));
 				// test that substrings are correct
-				System.out.println("s = " + s);
-				System.out.println("parentString = " + parentString);
-				System.out.println("probs = " + probs);
+				//System.out.println("s = " + s);
+				//System.out.println("parentString = " + parentString);
+				//System.out.println("probs = " + probs);
 				
 				// split string of parent nodes
 				String[] parentNodes = parentString.split(" ");
-				System.out.println("parentNodes = " + Arrays.toString(parentNodes) + ", length = " + parentNodes.length);
+				//System.out.println("parentNodes = " + Arrays.toString(parentNodes) + ", length = " + parentNodes.length);
 				if (parentNodes.length > 0) {
 					for (int j=0; j<parentNodes.length; j++) {
 						if (parentNodes[j].length() > 0) {
 							// extract node number from string
 							int nodeNum = Character.getNumericValue(parentNodes[j].charAt(parentNodes[j].length() - 1));
-							System.out.println("nodeNum = " + nodeNum);
+							//System.out.println("nodeNum = " + nodeNum);
 							// create edge between nodes, add it to each node
 							Edge edge = new Edge(nodes.get(j), nodes.get(i));
 							nodes.get(j).addEdgeFrom(edge);

@@ -52,7 +52,7 @@ public class UnknownNode extends absBayesNode implements IBayesNode {
 		}
 	}
 	
-	public double getProbability() throws BayesNetException {
+	public double getLocalProbability() throws BayesNetException {
 		double prob = 0;
 		int count = 0;
 		int parentVal = 0;

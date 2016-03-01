@@ -17,11 +17,20 @@ public interface IBayesNode {
 	public boolean getVal() throws BayesNetException;
 	
 	/**
-	 * calculate the probability that the node is true
+	 * calculate the probability that the node is true given that any parent nodes are 
+	 * already defined as either true or false
 	 * @return a double denoting the probability that this node is true
 	 * @throws BayesNetException 
 	 */
-	public double getProbability() throws BayesNetException;
+	public double getLocalProbability() throws BayesNetException;
+	
+	/**
+	 * calculate the probability that the node is true using the probabilities that each 
+	 * parent node is true
+	 * @return a double denoting the probability that this node is true
+	 * @throws BayesNetException
+	 */
+	public double getTotalProbability() throws BayesNetException;
 	
 	/**
 	 * If the value of this node has not yet been generated, generate it first. 

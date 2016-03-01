@@ -31,7 +31,16 @@ public class EvidenceNode extends absBayesNode implements IBayesNode {
 	 * return the probability that this node is true
 	 * @return 1 if true, 0 if false
 	 */
-	public double getProbability(){
+	public double getLocalProbability(){
+		if (value) {
+			return 1;
+		}
+		else {
+			return 0;
+		}
+	}
+	
+	public double getTotalProbability(){
 		if (value) {
 			return 1;
 		}
