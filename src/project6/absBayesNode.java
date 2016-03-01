@@ -74,4 +74,8 @@ public abstract class absBayesNode {
 	public ArrayList<Edge> getEdgesTo() {
 		return edgesTo;
 	}
+	
+	public String getName() {
+		return name;
+	}
 }
