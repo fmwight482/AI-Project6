@@ -82,8 +82,8 @@ public class makeBayesNet {
 							//System.out.println("nodeNum = " + nodeNum);
 							// create edge between nodes, add it to each node
 							Edge edge = new Edge(nodes.get(j), nodes.get(i));
-							nodes.get(j).addEdgeFrom(edge);
-							nodes.get(i).addEdgeTo(edge);
+							nodes.get(i).addEdgeFrom(edge);
+							nodes.get(j).addEdgeTo(edge);
 						}
 					}
 				}
@@ -127,7 +127,7 @@ public class makeBayesNet {
 		System.out.println("Printing probabilities:");
 		for (IBayesNode bn : nodes) {
 			System.out.print("Node " + bn.getName() + " has probability ");
-			System.out.println(bn.getProbability());
+			System.out.println(bn.getTotalProbability());
 		}
 	}
 	

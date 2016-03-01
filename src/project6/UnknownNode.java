@@ -33,7 +33,7 @@ public class UnknownNode extends absBayesNode implements IBayesNode {
 	@Override
 	public boolean getVal() throws BayesNetException {
 		boolean thisValue = false;
-		double prob = getProbability();
+		double prob = getLocalProbability();
 		
 		if (rand.nextDouble() <= prob) {
 			value = true;
@@ -75,4 +75,48 @@ public class UnknownNode extends absBayesNode implements IBayesNode {
 		return prob;
 	}
 	
+	public double getTotalProbability() throws BayesNetException {
+		double prob = 0;
+		
+		if (cpt.isEmpty()) {
+			System.err.println("Cannot get probability for node because cpt table is empty");
+		}
+		else if (cpt.size() == 1) {
+			prob = cpt.get(0);
+		}
+		else {
+			// get list of probabilities of parent nodes
+			ArrayList<Double> probs = new ArrayList<Double>();
+			for (Edge e : edgesFrom) {
+				probs.add(e.getParent().getTotalProbability());
+			}
+			// compare number of probabilities with size of cpt table to determine compatability
+			if (cpt.size() != Math.pow(2, probs.size())) {
+				throw new BayesNetException("cpt table of size " + cpt.size() + " is not compatable with "
+						+ probs.size() + " parent nodes");
+			}
+			for (int i=0; i<cpt.size(); i++) {
+				ArrayList<Boolean> bools = new ArrayList<Boolean>();
+				// probability = given probability + (pGivenState * pOfState)
+				// pOfState = pBit1 * pBit2 * pBit3 * ... * pBitN
+				double pGivenState = cpt.get(i);
+				double pOfState = 1;
+				int anInt = i;
+				for (int j=0; j<probs.size(); j++) {
+					int bit = anInt % 2;
+					if (bit == 1) {
+						pOfState = pOfState * probs.get(j);
+					}
+					else {
+						pOfState = pOfState * (1 - probs.get(j));
+					}
+					anInt = anInt / 2;
+				}
+				prob += pOfState * pGivenState;
+			}
+			// if numbers line up, find and sum the probabilities for each cpt state
+		}
+		
+		return prob;
+	}
 }

@@ -40,7 +40,7 @@ public class QueryNode extends absBayesNode implements IBayesNode {
 		boolean thisValue = false;
 		int count = 0;
 		int parentVal =0;
-		double prob = getProbability();
+		double prob = getLocalProbability();
 		
 		if (rand.nextDouble() <= prob) {
 			value = true;
@@ -81,5 +81,10 @@ public class QueryNode extends absBayesNode implements IBayesNode {
 			throw new BayesNetException("parentVal = " + parentVal);
 		}
 		return prob;
+	}
+	
+	public double getTotalProbability() throws BayesNetException {
+		System.out.println("Not yet implemented");
+		return 1;
 	}
 }

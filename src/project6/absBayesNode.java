@@ -8,8 +8,16 @@ import java.util.Random;
  * leading into and out from the node.
  */
 public abstract class absBayesNode {
+	/**
+	 * list of edges to children of this node
+	 */
 	private ArrayList<Edge> edgesTo;
+	
+	/**
+	 * list of edges from parents of this node
+	 */
 	protected ArrayList<Edge> edgesFrom;
+	
 	protected ArrayList<Double> cpt;
 	protected Random rand;
 	private String name;
