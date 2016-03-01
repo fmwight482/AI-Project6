@@ -24,6 +24,12 @@ public interface IBayesNode {
 	public double getProbability() throws BayesNetException;
 	
 	/**
+	 * If the value of this node has not yet been generated, generate it first. 
+	 * @return the boolean value of this node
+	 */
+	public boolean isTrue();
+	
+	/**
 	 * adds the given CPT value to cpt list
 	 * @param newCPT
 	 */
