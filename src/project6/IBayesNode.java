@@ -19,8 +19,9 @@ public interface IBayesNode {
 	/**
 	 * calculate the probability that the node is true
 	 * @return a double denoting the probability that this node is true
+	 * @throws BayesNetException 
 	 */
-	public double getProbability();
+	public double getProbability() throws BayesNetException;
 	
 	/**
 	 * adds the given CPT value to cpt list
