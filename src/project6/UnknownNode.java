@@ -37,6 +37,7 @@ public class UnknownNode extends absBayesNode implements IBayesNode {
 		
 		if (rand.nextDouble() <= prob) {
 			value = true;
+			isSet = true;
 		}
 		return value;
 	}

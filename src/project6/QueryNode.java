@@ -40,17 +40,11 @@ public class QueryNode extends absBayesNode implements IBayesNode {
 		boolean thisValue = false;
 		int count = 0;
 		int parentVal =0;
-		//get parent values from edgesFrom
-		//construct a value from the truth of the parents
-		for(Edge e : edgesFrom){			
-			if(e.getParent().getVal()){
-				parentVal= 1 << count;//set the bit associated with the parent
-			}			
-			count++;
-		}//end for loop
-		//look through CPT to find a true condition in cpt
-		for(double val : cpt){
-			
+		double prob = getProbability();
+		
+		if (rand.nextDouble() <= prob) {
+			value = true;
+			isSet = true;
 		}
 		//value = thisValue;
 		return thisValue;
@@ -73,9 +67,8 @@ public class QueryNode extends absBayesNode implements IBayesNode {
 		// get parent values from edgesFrom
 		// construct a value from the truth of the parents
 		for (Edge e : edgesFrom) {
-			if (e.getParent().getVal()) {
+			if (e.getParent().isTrue()) {
 				// set the bit associated with the parent
-				System.out.println("Before bitshift, parentVal = " + parentVal);
 				parentVal = 1 << count;
 			}
 			count++;
