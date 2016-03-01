@@ -62,7 +62,7 @@ public class UnknownNode extends absBayesNode implements IBayesNode {
 
 	}
 	
-	public boolean vetVal() {
+	public boolean getVal() {
 		return value;
 	}
 	
