@@ -1,5 +1,6 @@
 package project6;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -84,7 +85,47 @@ public class QueryNode extends absBayesNode implements IBayesNode {
 	}
 	
 	public double getTotalProbability() throws BayesNetException {
-		System.out.println("Not yet implemented");
-		return 1;
+		double prob = 0;
+		
+		if (cpt.isEmpty()) {
+			System.err.println("Cannot get probability for node because cpt table is empty");
+		}
+		else if (cpt.size() == 1) {
+			prob = cpt.get(0);
+		}
+		else {
+			// get list of probabilities of parent nodes
+			ArrayList<Double> probs = new ArrayList<Double>();
+			for (Edge e : edgesTo) {
+				probs.add(e.getParent().getTotalProbability());
+			}
+			// compare number of probabilities with size of cpt table to determine compatability
+			if (cpt.size() != Math.pow(2, probs.size())) {
+				throw new BayesNetException("cpt table of size " + cpt.size() + " is not compatable with "
+						+ probs.size() + " parent nodes");
+			}
+			for (int i=0; i<cpt.size(); i++) {
+				// probability = given probability + (pGivenState * pOfState)
+				// pOfState = pBit1 * pBit2 * pBit3 * ... * pBitN
+				double pGivenState = cpt.get(i);
+				double pOfState = 1;
+				int anInt = i;
+				for (int j=0; j<probs.size(); j++) {
+					int bit = anInt % 2;
+					if (bit == 1) {
+						pOfState = pOfState * probs.get(j);
+					}
+					else {
+						pOfState = pOfState * (1 - probs.get(j));
+					}
+					anInt = anInt / 2;
+				}
+				System.out.println("probability of state " + anInt + " in node " + getName() + " = " + pOfState);
+				prob += pOfState * pGivenState;
+			}
+			// if numbers line up, find and sum the probabilities for each cpt state
+		}
+		System.out.println("Prob for node " + getName() + " = " + prob);
+		return prob;
 	}
 }

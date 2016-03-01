@@ -11,7 +11,7 @@ public abstract class absBayesNode {
 	/**
 	 * list of edges to children of this node
 	 */
-	private ArrayList<Edge> edgesTo;
+	protected ArrayList<Edge> edgesTo;
 	
 	/**
 	 * list of edges from parents of this node
