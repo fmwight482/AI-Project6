@@ -47,8 +47,26 @@ public class QueryNode extends absBayesNode implements IBayesNode {
 		return thisValue;
 	}
 	
-	public double getProbability() {
-		// TODO: properly implement this function
-		return 0;
+	public double getProbability() throws BayesNetException {
+		double prob = 0;
+		int count = 0;
+		int parentVal = 0;
+		// get parent values from edgesFrom
+		// construct a value from the truth of the parents
+		for (Edge e : edgesFrom) {
+			if (e.getParent().getVal()) {
+				// set the bit associated with the parent
+				parentVal = 1 << count;
+			}
+			count++;
+		} // end for loop
+		
+		if (parentVal >= 0 && parentVal <= cpt.size()) {
+			prob = cpt.get(parentVal);
+		}
+		else {
+			throw new BayesNetException("parentVal = " + parentVal);
+		}
+		return prob;
 	}
 }

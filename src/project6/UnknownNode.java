@@ -4,7 +4,14 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class UnknownNode extends absBayesNode implements IBayesNode {
+	/**
+	 * true if the value variable has been calculated and equals true, false otherwise
+	 */
 	private boolean hasVal;
+	
+	/**
+	 * boolean value of this node
+	 */
 	private boolean value;
 
 	/**
@@ -24,10 +31,6 @@ public class UnknownNode extends absBayesNode implements IBayesNode {
 		hasVal = false;
 	}
 	
-	/**
-	 * @throws BayesNetException 
-	 * 
-	 */
 	@Override
 	public boolean getVal() throws BayesNetException {
 		if (hasVal) {
@@ -43,7 +46,6 @@ public class UnknownNode extends absBayesNode implements IBayesNode {
 			hasVal = true;
 			return value;
 		}
-
 	}
 	
 	public double getProbability() throws BayesNetException {
