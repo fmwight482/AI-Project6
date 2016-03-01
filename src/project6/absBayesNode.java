@@ -11,7 +11,8 @@ public abstract class absBayesNode {
 	private ArrayList<Edge> edgesTo;
 	protected ArrayList<Edge> edgesFrom;
 	protected ArrayList<Double> cpt;
-	private Random rand;
+	protected Random rand;
+	private String name;
 	
 	/**
 	 * standard constructor
@@ -20,6 +21,7 @@ public abstract class absBayesNode {
 		edgesTo = new ArrayList<Edge>();
 		edgesFrom = new ArrayList<Edge>();
 		cpt = new ArrayList<Double>();
+		name = "name not set";
 	}
 	
 	/**
@@ -31,6 +33,7 @@ public abstract class absBayesNode {
 		edgesFrom = new ArrayList<Edge>();
 		cpt = new ArrayList<Double>();
 		rand = aRand;
+		name = "name not set";
 	}
 	
 	/**
