@@ -41,17 +41,19 @@ public class makeBayesNet {
 			for (int i=0; i<query.length; i++) {
 				// initialize each node as the appropriate type
 				String val = query[i];
+				String name = network.get(i).substring(0, 5);
+				System.out.println("Name = " + name);
 				if (val.equalsIgnoreCase("t")) {
-					nodes.add(new EvidenceNode(true, rand));
+					nodes.add(new EvidenceNode(true, rand, name));
 				}
 				else if (val.equalsIgnoreCase("f")) {
-					nodes.add(new EvidenceNode(false, rand));
+					nodes.add(new EvidenceNode(false, rand, name));
 				}
 				else if (val.equalsIgnoreCase("-")) {
-					nodes.add(new UnknownNode(rand));
+					nodes.add(new UnknownNode(rand, name));
 				}
 				else if (val.equalsIgnoreCase("?")) {
-					nodes.add(new QueryNode(rand));
+					nodes.add(new QueryNode(rand, name));
 				}
 				else {
 					throw new BayesNetException("read value '" + val + "' is not valid");
@@ -115,6 +117,10 @@ public class makeBayesNet {
 				
 			}
 		}
+	}
+	
+	static void printProbabilityResults() {
+		
 	}
 
 	public static void main(String[] args) throws BayesNetException {

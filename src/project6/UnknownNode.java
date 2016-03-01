@@ -13,16 +13,16 @@ public class UnknownNode extends absBayesNode implements IBayesNode {
 	/**
 	 * Default Constructor
 	 */
-	public UnknownNode() {
-		super();
+	public UnknownNode(String aName) {
+		super(aName);
 	}
 	
 	/**
 	 * constructor with random number generator passed in
 	 * @param aRand
 	 */
-	public UnknownNode(Random aRand) {
-		super(aRand);
+	public UnknownNode(Random aRand, String aName) {
+		super(aRand, aName);
 	}
 	
 	@Override

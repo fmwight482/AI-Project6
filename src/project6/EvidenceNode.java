@@ -12,8 +12,8 @@ public class EvidenceNode extends absBayesNode implements IBayesNode {
 	 * standard constructor for EvidenceNode
 	 * @param aVal
 	 */
-	public EvidenceNode(boolean aVal) {
-		super();
+	public EvidenceNode(boolean aVal, String aName) {
+		super(aName);
 		value = aVal;
 	}
 	
@@ -22,8 +22,8 @@ public class EvidenceNode extends absBayesNode implements IBayesNode {
 	 * @param aVal
 	 * @param aRand
 	 */
-	public EvidenceNode(boolean aVal, Random aRand) {
-		super(aRand);
+	public EvidenceNode(boolean aVal, Random aRand, String aName) {
+		super(aRand, aName);
 		value = aVal;
 	}
 	

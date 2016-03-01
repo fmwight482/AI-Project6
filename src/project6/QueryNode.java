@@ -10,16 +10,16 @@ public class QueryNode extends absBayesNode implements IBayesNode {
 	/**
 	 * Standard constructor for QueryNode
 	 */
-	public QueryNode() {
-		super();
+	public QueryNode(String aName) {
+		super(aName);
 	}
 	
 	/**
 	 * constructor with random number generator passed in
 	 * @param aRand
 	 */
-	public QueryNode(Random aRand) {
-		super(aRand);
+	public QueryNode(Random aRand, String aName) {
+		super(aRand, aName);
 	}
 	
 	/**

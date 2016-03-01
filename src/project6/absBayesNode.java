@@ -18,23 +18,23 @@ public abstract class absBayesNode {
 	/**
 	 * standard constructor
 	 */
-	public absBayesNode() {
+	public absBayesNode(String aName) {
 		edgesTo = new ArrayList<Edge>();
 		edgesFrom = new ArrayList<Edge>();
 		cpt = new ArrayList<Double>();
-		name = "name not set";
+		name = aName;
 	}
 	
 	/**
 	 * constructor with Random number generator passed in
 	 * @param aRand
 	 */
-	public absBayesNode(Random aRand) {
+	public absBayesNode(Random aRand, String aName) {
 		edgesTo = new ArrayList<Edge>();
 		edgesFrom = new ArrayList<Edge>();
 		cpt = new ArrayList<Double>();
 		rand = aRand;
-		name = "name not set";
+		name = aName;
 	}
 	
 	/**
