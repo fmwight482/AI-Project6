@@ -6,6 +6,15 @@ import java.util.Random;
  * class representing a query variable node in a bayes net
  */
 public class QueryNode extends absBayesNode implements IBayesNode {
+	/**
+	 * boolean value of this node
+	 */
+	private boolean value;
+	
+	/**
+	 * evaluates to true if value has been set
+	 */
+	private boolean isSet;
 	
 	/**
 	 * Standard constructor for QueryNode
@@ -47,6 +56,16 @@ public class QueryNode extends absBayesNode implements IBayesNode {
 		return thisValue;
 	}
 	
+	public boolean isTrue() throws BayesNetException {
+		if (isSet) {
+			return value;
+		}
+		else {
+			isSet = true;
+			return getVal();
+		}
+	}
+	
 	public double getProbability() throws BayesNetException {
 		double prob = 0;
 		int count = 0;
@@ -56,6 +75,7 @@ public class QueryNode extends absBayesNode implements IBayesNode {
 		for (Edge e : edgesFrom) {
 			if (e.getParent().getVal()) {
 				// set the bit associated with the parent
+				System.out.println("Before bitshift, parentVal = " + parentVal);
 				parentVal = 1 << count;
 			}
 			count++;

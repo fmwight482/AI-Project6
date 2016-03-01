@@ -48,4 +48,8 @@ public class EvidenceNode extends absBayesNode implements IBayesNode {
 	public boolean getVal() {
 		return value;
 	}
+	
+	public boolean isTrue() {
+		return value;
+	}
 }

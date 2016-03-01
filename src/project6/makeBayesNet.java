@@ -126,7 +126,8 @@ public class makeBayesNet {
 	static void printProbabilityResults() throws BayesNetException {
 		System.out.println("Printing probabilities:");
 		for (IBayesNode bn : nodes) {
-			System.out.println("Node " + bn.getName() + " has probability " + bn.getProbability());
+			System.out.print("Node " + bn.getName() + " has probability ");
+			System.out.println(bn.getProbability());
 		}
 	}
 	
