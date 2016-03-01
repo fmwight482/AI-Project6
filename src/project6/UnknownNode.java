@@ -96,7 +96,6 @@ public class UnknownNode extends absBayesNode implements IBayesNode {
 						+ probs.size() + " parent nodes");
 			}
 			for (int i=0; i<cpt.size(); i++) {
-				ArrayList<Boolean> bools = new ArrayList<Boolean>();
 				// probability = given probability + (pGivenState * pOfState)
 				// pOfState = pBit1 * pBit2 * pBit3 * ... * pBitN
 				double pGivenState = cpt.get(i);
@@ -112,11 +111,12 @@ public class UnknownNode extends absBayesNode implements IBayesNode {
 					}
 					anInt = anInt / 2;
 				}
+				System.out.println("probability of state " + anInt + " in node " + getName() + " = " + pOfState);
 				prob += pOfState * pGivenState;
 			}
 			// if numbers line up, find and sum the probabilities for each cpt state
 		}
-		
+		System.out.println("Prob for node " + getName() + " = " + prob);
 		return prob;
 	}
 }
