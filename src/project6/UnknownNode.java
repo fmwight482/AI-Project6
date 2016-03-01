@@ -1,5 +1,6 @@
 package project6;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class UnknownNode extends absBayesNode implements IBayesNode {
@@ -24,10 +25,11 @@ public class UnknownNode extends absBayesNode implements IBayesNode {
 	}
 	
 	/**
+	 * @throws BayesNetException 
 	 * 
 	 */
 	@Override
-	public boolean isTrue() {
+	public boolean isTrue() throws BayesNetException {
 		if (hasVal) {
 			return value;
 		} else {
@@ -45,19 +47,19 @@ public class UnknownNode extends absBayesNode implements IBayesNode {
 				count++;
 			} // end for loop
 			count = 0;
-			for (double c : cpt) {
-				// count corresponds with the index AND the integer representation of the cpt table state
-				if (count == parentVal) {
-					prob = c;
-					thisValue = false ;//makeVal(prob.get(count));
-					// look through truth list
-				}
-				count++;
+			
+			if (parentVal >= 0 && parentVal <= cpt.size()) {
+				prob = cpt.get(parentVal);
 			}
-			// look through CPT to find a true condition in cpt
-			// value = thisValue;
+			else {
+				throw new BayesNetException("parentVal = " + parentVal);
+			}
+			
+			if (rand.nextDouble() <= prob) {
+				value = true;
+			}
 			hasVal = true;
-			return thisValue;
+			return value;
 		}
 
 	}
@@ -76,7 +78,14 @@ public class UnknownNode extends absBayesNode implements IBayesNode {
 		}
 		else {
 			// get list of probabilities of parent nodes
+			ArrayList<Double> probs = new ArrayList<Double>();
+			for (Edge e : edgesFrom) {
+				probs.add(e.getParent().getProbability());
+			}
 			// compare number of probabilities with size of cpt table to determine compatability
+			if (cpt.size() != Math.pow(2, probs.size())) {
+				
+			}
 			// if numbers line up, find and sum the probabilities for each cpt state
 		}
 		return val;

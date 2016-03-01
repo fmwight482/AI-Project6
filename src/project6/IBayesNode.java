@@ -6,7 +6,7 @@ package project6;
  *
  */
 public interface IBayesNode {
-	public boolean isTrue();
+	public boolean isTrue() throws BayesNetException;
 	
 	/**
 	 * calculate the probability that the node is true

@@ -25,8 +25,9 @@ public class QueryNode extends absBayesNode implements IBayesNode {
 	/**
 	 * Returns if this node is true from the value of each parent
 	 * @return thisValue
+	 * @throws BayesNetException
 	 */
-	public boolean isTrue(){
+	public boolean isTrue() throws BayesNetException{
 		boolean thisValue = false;
 		int count = 0;
 		int parentVal =0;
