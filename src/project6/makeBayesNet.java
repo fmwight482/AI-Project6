@@ -14,25 +14,16 @@ import java.util.Random;
  */
 public class makeBayesNet {
 	static Random rand = new Random();
-
-	public static void main(String[] args) throws BayesNetException {
-		// for "real" runs, seed with time in milliseconds
-		rand.setSeed(System.currentTimeMillis());
-		
-		// TODO Auto-generated method stub
-		// args 0 = network file
-		// args 1 = query file
-		// args 2 = number of samples
-		if (args.length != 3) {
-			throw new BayesNetException("makeBayesNet requires three values as input");
-		}
-		File networkFile = new File(args[0]);
-		File queryFile = new File(args[1]);
-		int numSamples = Integer.parseInt(args[2]);
-		
-		ArrayList<IBayesNode> nodes = new ArrayList<IBayesNode>();
-		ArrayList<String> network = new ArrayList<String>();
-		
+	static ArrayList<IBayesNode> nodes = new ArrayList<IBayesNode>();
+	static ArrayList<String> network = new ArrayList<String>();
+	
+	/**
+	 * build the bayes net by filling in the node arraylist
+	 * @param networkFile
+	 * @param queryFile
+	 * @throws BayesNetException
+	 */
+	static void buildBayesNet(File networkFile, File queryFile) throws BayesNetException {
 		BufferedReader queryReader = null;
 		BufferedReader networkReader = null;
 		
@@ -124,7 +115,23 @@ public class makeBayesNet {
 				
 			}
 		}
-		
 	}
 
+	public static void main(String[] args) throws BayesNetException {
+		// for "real" runs, seed with time in milliseconds
+		rand.setSeed(System.currentTimeMillis());
+		
+		// TODO Auto-generated method stub
+		// args 0 = network file
+		// args 1 = query file
+		// args 2 = number of samples
+		if (args.length != 3) {
+			throw new BayesNetException("makeBayesNet requires three values as input");
+		}
+		File networkFile = new File(args[0]);
+		File queryFile = new File(args[1]);
+		int numSamples = Integer.parseInt(args[2]);
+		
+		buildBayesNet(networkFile, queryFile);
+	}
 }
