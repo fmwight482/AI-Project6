@@ -13,6 +13,7 @@ public abstract class absBayesNode {
 	protected ArrayList<Double> cpt;
 	protected Random rand;
 	private String name;
+	//TODO: add getter, setter for name
 	
 	/**
 	 * standard constructor

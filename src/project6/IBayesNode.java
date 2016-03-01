@@ -6,7 +6,15 @@ package project6;
  *
  */
 public interface IBayesNode {
-	public boolean isTrue() throws BayesNetException;
+	
+	/**
+	 * Return true or false in accordance with the value of this node. 
+	 * If the node does not have a set value, calculate the necessary probabilities 
+	 * and randomly generate a boolean value from them. 
+	 * @return
+	 * @throws BayesNetException
+	 */
+	public boolean getVal() throws BayesNetException;
 	
 	/**
 	 * calculate the probability that the node is true

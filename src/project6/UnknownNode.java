@@ -29,7 +29,7 @@ public class UnknownNode extends absBayesNode implements IBayesNode {
 	 * 
 	 */
 	@Override
-	public boolean isTrue() throws BayesNetException {
+	public boolean getVal() throws BayesNetException {
 		if (hasVal) {
 			return value;
 		} else {
@@ -40,7 +40,7 @@ public class UnknownNode extends absBayesNode implements IBayesNode {
 			// get parent values from edgesFrom
 			// construct a value from the truth of the parents
 			for (Edge e : edgesFrom) {
-				if (e.getParent().isTrue()) {
+				if (e.getParent().getVal()) {
 					parentVal = 1 << count;// set the bit associated with the
 											// parent
 				}
@@ -62,10 +62,6 @@ public class UnknownNode extends absBayesNode implements IBayesNode {
 			return value;
 		}
 
-	}
-	
-	public boolean getVal() {
-		return value;
 	}
 	
 	public double getProbability() {

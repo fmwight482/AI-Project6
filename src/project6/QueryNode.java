@@ -27,14 +27,14 @@ public class QueryNode extends absBayesNode implements IBayesNode {
 	 * @return thisValue
 	 * @throws BayesNetException
 	 */
-	public boolean isTrue() throws BayesNetException{
+	public boolean getVal() throws BayesNetException{
 		boolean thisValue = false;
 		int count = 0;
 		int parentVal =0;
 		//get parent values from edgesFrom
 		//construct a value from the truth of the parents
 		for(Edge e : edgesFrom){			
-			if(e.getParent().isTrue()){
+			if(e.getParent().getVal()){
 				parentVal= 1 << count;//set the bit associated with the parent
 			}			
 			count++;

@@ -45,7 +45,7 @@ public class EvidenceNode extends absBayesNode implements IBayesNode {
 	 * @return value
 	 */
 	@Override
-	public boolean isTrue() {
+	public boolean getVal() {
 		return value;
 	}
 }
