@@ -119,8 +119,24 @@ public class makeBayesNet {
 		}
 	}
 	
-	static void printProbabilityResults() {
-		
+	/**
+	 * print the probability that each node is true
+	 * @throws BayesNetException
+	 */
+	static void printProbabilityResults() throws BayesNetException {
+		for (IBayesNode bn : nodes) {
+			System.out.println("Node " + bn.getName() + " has probability " + bn.getProbability());
+		}
+	}
+	
+	/**
+	 * print the boolean value of each node
+	 * @throws BayesNetException
+	 */
+	static void printBooleanResults() throws BayesNetException {
+		for (IBayesNode bn : nodes) {
+			System.out.println("Node " + bn.getName() + " is " + bn.getVal());
+		}
 	}
 
 	public static void main(String[] args) throws BayesNetException {
