@@ -26,8 +26,9 @@ public interface IBayesNode {
 	/**
 	 * If the value of this node has not yet been generated, generate it first. 
 	 * @return the boolean value of this node
+	 * @throws BayesNetException 
 	 */
-	public boolean isTrue();
+	public boolean isTrue() throws BayesNetException;
 	
 	/**
 	 * adds the given CPT value to cpt list
