@@ -40,4 +40,9 @@ public interface IBayesNode {
 	 * @param anEdge
 	 */
 	public void addEdgeFrom(Edge anEdge);
+	
+	/**
+	 * @return the name of this node
+	 */
+	public String getName();
 }
