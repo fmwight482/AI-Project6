@@ -81,7 +81,10 @@ public class makeBayesNet {
 							int nodeNum = Character.getNumericValue(parentNodes[j].charAt(parentNodes[j].length() - 1));
 							//System.out.println("nodeNum = " + nodeNum);
 							// create edge between nodes, add it to each node
-							Edge edge = new Edge(nodes.get(j), nodes.get(i));
+							IBayesNode parent = nodes.get(nodeNum - 1);
+							IBayesNode child = nodes.get(i);
+							//System.out.println("added an edge from " + parent.getName() + " to " + child.getName());
+							Edge edge = new Edge(parent, child);
 							nodes.get(i).addEdgeFrom(edge);
 							nodes.get(j).addEdgeTo(edge);
 						}
@@ -94,8 +97,9 @@ public class makeBayesNet {
 					double prob = Double.parseDouble(splitProbs[k]);
 					// add probs to the cpt list in order, such that the index of each probability
 					// corresponds to the binary representation of the cpt table state
-					nodes.get(k).addCPT(prob);
+					nodes.get(i).addCPT(prob);
 				}
+				
 			}
 		}
 		catch (FileNotFoundException e) {
@@ -161,6 +165,6 @@ public class makeBayesNet {
 		
 		printProbabilityResults();
 		
-		printBooleanResults();
+		//printBooleanResults();
 	}
 }

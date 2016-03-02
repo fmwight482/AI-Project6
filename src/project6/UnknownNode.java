@@ -111,12 +111,12 @@ public class UnknownNode extends absBayesNode implements IBayesNode {
 					}
 					anInt = anInt / 2;
 				}
-				System.out.println("probability of state " + anInt + " in node " + getName() + " = " + pOfState);
+				//System.out.println("probability of state " + Integer.toBinaryString(i) + " in " + getName() + " = " + pOfState);
 				prob += pOfState * pGivenState;
 			}
 			// if numbers line up, find and sum the probabilities for each cpt state
 		}
-		System.out.println("Prob for node " + getName() + " = " + prob);
+		//System.out.println("Prob for node " + getName() + " = " + prob);
 		return prob;
 	}
 }
