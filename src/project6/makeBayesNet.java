@@ -157,13 +157,13 @@ public class makeBayesNet {
 	 * @return the probability that the query node is true
 	 * @throws BayesNetException
 	 */
-	static double rejectionSampling(int samples) throws BayesNetException {
+	static void rejectionSampling(int samples) throws BayesNetException {
 		int countTrue = 0;
 		int countFalse = 0;
 		for (int i=0; i<samples; i++) {
-			Boolean shouldReject = new Boolean(false);
-			boolean isTrue = queryNode.getVal(shouldReject);
-			if (!shouldReject) {
+			BooleanRef shouldReject = new BooleanRef(false);
+			boolean isTrue = queryNode.getRejectionValue(shouldReject);
+			if (!shouldReject.value) {
 				if (isTrue) {
 					countTrue++;
 				}
@@ -172,7 +172,9 @@ public class makeBayesNet {
 				}
 			}
 		}
-		return countTrue / (countTrue + countFalse);
+		System.out.println("Results from rejection sampling:");
+		printTestResults(countTrue, countFalse, samples);
+		//return countTrue / (countTrue + countFalse);
 	}
 	
 	/**
@@ -181,9 +183,36 @@ public class makeBayesNet {
 	 * @return the probability that the query node is true
 	 * @throws BayesNetException
 	 */
-	static double liklihoodWeightedSampling(int samples) throws BayesNetException {
-		double prob = queryNode.getLocalProbability();
-		return prob;
+	static void likelihoodWeightedSampling(int samples) throws BayesNetException {
+		int countTrue = 0;
+		int countFalse = 0;
+		for (int i=0; i<samples; i++) {
+			Boolean shouldReject = new Boolean(false);
+			boolean isTrue = queryNode.getLikelihoodWeightedValue();
+			if (isTrue) {
+				countTrue++;
+			}
+			else {
+				countFalse++;
+			}
+		}
+		System.out.println("Results from likelihood weighted sampling:");
+		printTestResults(countTrue, countFalse, samples);
+		//return countTrue / (countTrue + countFalse);
+	}
+	
+	static void printTestResults(int countTrue, int countFalse, int samples) {
+		double pctTrue;
+		if (countTrue + countFalse == 0) {
+			pctTrue = 0;
+		}
+		else {
+			pctTrue = 100 * countTrue / (countTrue + countFalse);
+		}
+		double pctAccepted = 100 * (countTrue + countFalse) / samples;
+		System.out.println("Of " + samples + " samples, " + countTrue + " produced true and " + countFalse
+				+ " produced false. All told, " + pctAccepted + "% of samples were not rejected, and of those "
+				+ pctTrue + "% returned true.");
 	}
 
 	public static void main(String[] args) throws BayesNetException {
@@ -201,8 +230,10 @@ public class makeBayesNet {
 		
 		buildBayesNet(args[0], args[1]);
 		
-		printProbabilityResults();
+		//printProbabilityResults();
+		//printBooleanResults();
 		
-		printBooleanResults();
+		rejectionSampling(numSamples);
+		likelihoodWeightedSampling(numSamples);
 	}
 }

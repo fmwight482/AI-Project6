@@ -102,6 +102,7 @@ public class EvidenceNode extends absBayesNode implements IBayesNode {
 	 */
 	@Override
 	public boolean getVal(Boolean shouldReject) throws BayesNetException {
+		System.out.println("getVal called on EvidenceNode " + getName());
 		boolean thisValue = false;
 		double prob = getLocalProbability();
 		
@@ -114,6 +115,7 @@ public class EvidenceNode extends absBayesNode implements IBayesNode {
 		}
 		else {
 			// this sample is REJECTED!!!
+			//System.out.println("This should be rejected");
 			shouldReject = true;
 		}
 		return thisValue;
@@ -127,5 +129,25 @@ public class EvidenceNode extends absBayesNode implements IBayesNode {
 	@Override
 	public boolean getLikelihoodWeightedValue() throws BayesNetException {
 		return value;
+	}
+
+	@Override
+	public boolean getRejectionValue(BooleanRef shouldReject) throws BayesNetException {
+		boolean thisValue = false;
+		double prob = getLocalProbability();
+		
+		if (rand.nextDouble() <= prob) {
+			thisValue = true;
+		}
+		
+		if (value == thisValue) {
+			// this sample is A-OK!
+		}
+		else {
+			// this sample is REJECTED!!!
+			//System.out.println("This should be rejected");
+			shouldReject.setVal(true);
+		}
+		return thisValue;
 	}
 }

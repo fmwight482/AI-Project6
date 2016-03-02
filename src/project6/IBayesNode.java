@@ -41,6 +41,14 @@ public interface IBayesNode {
 	
 	/**
 	 * Generate a boolean value for this node using the likelihood weighting algorithm. 
+	 * @param isRejected
+	 * @return the boolean value of this node
+	 * @throws BayesNetException
+	 */
+	public boolean getRejectionValue(BooleanRef shouldReject) throws BayesNetException;
+	
+	/**
+	 * Generate a boolean value for this node using the likelihood weighting algorithm. 
 	 * If the node is an EvidenceNode with a pre-set value, return that value instead
 	 * @return the boolean value of this node
 	 * @throws BayesNetException

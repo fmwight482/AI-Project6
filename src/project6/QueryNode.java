@@ -38,21 +38,24 @@ public class QueryNode extends absBayesNode implements IBayesNode {
 	 * @throws BayesNetException
 	 */
 	public boolean getVal(Boolean shouldReject) throws BayesNetException {
+		System.out.println("getVal called on QueryNode " + getName());
 		if (shouldReject) {
 			// this trial will be rejected, so results are irrelevant
 			return false;
 		}
-		boolean thisValue = false;
 		int count = 0;
 		int parentVal =0;
 		double prob = getLocalProbability();
 		
 		if (rand.nextDouble() <= prob) {
 			value = true;
-			isSet = true;
 		}
+		else {
+			value = false;
+		}
+		isSet = true;
 		//value = thisValue;
-		return thisValue;
+		return value;
 	}
 	
 	public boolean isTrue() throws BayesNetException {
@@ -143,6 +146,37 @@ public class QueryNode extends absBayesNode implements IBayesNode {
 		// construct a value from the truth of the parents
 		for (Edge e : edgesFrom) {
 			if (e.getParent().getLikelihoodWeightedValue()) {
+				// set the bit associated with the parent
+				parentVal = 1 << count;
+			}
+			count++;
+		} // end for loop
+		
+		if (parentVal >= 0 && parentVal <= cpt.size()) {
+			prob = cpt.get(parentVal);
+		}
+		else {
+			throw new BayesNetException("parentVal = " + parentVal);
+		}
+		if (rand.nextDouble() <= prob) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean getRejectionValue(BooleanRef shouldReject) throws BayesNetException {
+		if (shouldReject.value) {
+			// this trial will be rejected, so results are irrelevant
+			return false;
+		}
+		double prob = 0;
+		int count = 0;
+		int parentVal = 0;
+		// get parent values from edgesFrom
+		// construct a value from the truth of the parents
+		for (Edge e : edgesFrom) {
+			if (e.getParent().getRejectionValue(shouldReject)) {
 				// set the bit associated with the parent
 				parentVal = 1 << count;
 			}
