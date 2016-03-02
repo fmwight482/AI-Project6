@@ -123,4 +123,31 @@ public class UnknownNode extends absBayesNode implements IBayesNode {
 		//System.out.println("Prob for node " + getName() + " = " + prob);
 		return prob;
 	}
+	
+	@Override
+	public boolean getLikelihoodWeightedValue() throws BayesNetException {
+		double prob = 0;
+		int count = 0;
+		int parentVal = 0;
+		// get parent values from edgesFrom
+		// construct a value from the truth of the parents
+		for (Edge e : edgesFrom) {
+			if (e.getParent().getLikelihoodWeightedValue()) {
+				// set the bit associated with the parent
+				parentVal = 1 << count;
+			}
+			count++;
+		} // end for loop
+		
+		if (parentVal >= 0 && parentVal <= cpt.size()) {
+			prob = cpt.get(parentVal);
+		}
+		else {
+			throw new BayesNetException("parentVal = " + parentVal);
+		}
+		if (rand.nextDouble() <= prob) {
+			return true;
+		}
+		return false;
+	}
 }

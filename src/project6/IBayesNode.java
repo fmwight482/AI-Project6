@@ -40,6 +40,14 @@ public interface IBayesNode {
 	public boolean isTrue() throws BayesNetException;
 	
 	/**
+	 * Generate a boolean value for this node using the likelihood weighting algorithm. 
+	 * If the node is an EvidenceNode with a pre-set value, return that value instead
+	 * @return the boolean value of this node
+	 * @throws BayesNetException
+	 */
+	public boolean getLikelihoodWeightedValue() throws BayesNetException;
+	
+	/**
 	 * adds the given CPT value to cpt list
 	 * @param newCPT
 	 */

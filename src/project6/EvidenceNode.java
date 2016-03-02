@@ -123,4 +123,9 @@ public class EvidenceNode extends absBayesNode implements IBayesNode {
 	public boolean isTrue() {
 		return value;
 	}
+
+	@Override
+	public boolean getLikelihoodWeightedValue() throws BayesNetException {
+		return value;
+	}
 }
