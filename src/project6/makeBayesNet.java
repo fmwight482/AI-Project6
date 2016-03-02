@@ -16,6 +16,7 @@ public class makeBayesNet {
 	static Random rand = new Random();
 	static ArrayList<IBayesNode> nodes = new ArrayList<IBayesNode>();
 	static ArrayList<String> network = new ArrayList<String>();
+	static QueryNode queryNode;
 	
 	/**
 	 * build the bayes net by filling in the node arraylist
@@ -56,7 +57,8 @@ public class makeBayesNet {
 					nodes.add(new UnknownNode(rand, name));
 				}
 				else if (val.equalsIgnoreCase("?")) {
-					nodes.add(new QueryNode(rand, name));
+					queryNode = new QueryNode(rand, name);
+					nodes.add(queryNode);
 				}
 				else {
 					throw new BayesNetException("read value '" + val + "' is not valid");
@@ -127,20 +129,6 @@ public class makeBayesNet {
 	}
 	
 	/**
-	 * Function to find the query node in the bayesian network
-	 * @return the query node
-	 * @throws BayesNetException
-	 */
-	static IBayesNode getQueryNode() throws BayesNetException {
-		for (IBayesNode node : nodes) {
-			if (node instanceof QueryNode) {
-				return node;
-			}
-		}
-		throw new BayesNetException("Could not find the QueryNode for the network");
-	}
-	
-	/**
 	 * print the probability that each node is true
 	 * @throws BayesNetException
 	 */
@@ -170,8 +158,21 @@ public class makeBayesNet {
 	 * @throws BayesNetException
 	 */
 	static double rejectionSampling(int samples) throws BayesNetException {
-		
-		return 0;
+		int countTrue = 0;
+		int countFalse = 0;
+		for (int i=0; i<samples; i++) {
+			Boolean shouldReject = new Boolean(false);
+			boolean isTrue = queryNode.getVal(shouldReject);
+			if (!shouldReject) {
+				if (isTrue) {
+					countTrue++;
+				}
+				else {
+					countFalse++;
+				}
+			}
+		}
+		return countTrue / (countTrue + countFalse);
 	}
 	
 	/**
@@ -181,7 +182,7 @@ public class makeBayesNet {
 	 * @throws BayesNetException
 	 */
 	static double liklihoodWeightedSampling(int samples) throws BayesNetException {
-		double prob = getQueryNode().getLocalProbability();
+		double prob = queryNode.getLocalProbability();
 		return prob;
 	}
 
