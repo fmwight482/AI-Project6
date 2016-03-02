@@ -101,8 +101,22 @@ public class EvidenceNode extends absBayesNode implements IBayesNode {
 	 * @return value
 	 */
 	@Override
-	public boolean getVal() {
-		return value;
+	public boolean getVal() throws BayesNetException {
+		boolean thisValue = false;
+		double prob = getLocalProbability();
+		
+		if (rand.nextDouble() <= prob) {
+			thisValue = true;
+		}
+		
+		if (value == thisValue) {
+			// this sample is A-OK!
+		}
+		else {
+			// this sample is REJECTED!!!
+		}
+		return thisValue;
+		//return value;
 	}
 	
 	public boolean isTrue() {

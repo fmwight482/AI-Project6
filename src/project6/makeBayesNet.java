@@ -181,7 +181,8 @@ public class makeBayesNet {
 	 * @throws BayesNetException
 	 */
 	static double liklihoodWeightedSampling(int samples) throws BayesNetException {
-		return 0;
+		double prob = getQueryNode().getLocalProbability();
+		return prob;
 	}
 
 	public static void main(String[] args) throws BayesNetException {
