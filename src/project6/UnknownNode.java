@@ -80,6 +80,7 @@ public class UnknownNode extends absBayesNode implements IBayesNode {
 		else {
 			throw new BayesNetException("parentVal = " + parentVal);
 		}
+		System.out.println("probability of UnknownNode " + getName() + " = " + prob);
 		return prob;
 	}
 	
@@ -130,6 +131,7 @@ public class UnknownNode extends absBayesNode implements IBayesNode {
 	
 	@Override
 	public boolean getLikelihoodWeightedValue() throws BayesNetException {
+		boolean value = false;
 		double prob = 0;
 		int count = 0;
 		int parentVal = 0;
@@ -138,10 +140,11 @@ public class UnknownNode extends absBayesNode implements IBayesNode {
 		for (Edge e : edgesFrom) {
 			if (e.getParent().getLikelihoodWeightedValue()) {
 				// set the bit associated with the parent
-				parentVal = 1 << count;
+				parentVal += 1 << count;
 			}
 			count++;
 		} // end for loop
+		//System.out.println("parentVal " + Integer.toBinaryString(parentVal));
 		
 		if (parentVal >= 0 && parentVal <= cpt.size()) {
 			prob = cpt.get(parentVal);
@@ -150,9 +153,10 @@ public class UnknownNode extends absBayesNode implements IBayesNode {
 			throw new BayesNetException("parentVal = " + parentVal);
 		}
 		if (rand.nextDouble() <= prob) {
-			return true;
+			value = true;
 		}
-		return false;
+		//System.out.println("probability of UnknownNode " + getName() + " = " + prob + ", returning " + value);
+		return value;
 	}
 	
 	@Override
@@ -161,6 +165,7 @@ public class UnknownNode extends absBayesNode implements IBayesNode {
 			// this trial will be rejected, so results are irrelevant
 			return false;
 		}
+		boolean value = false;
 		double prob = 0;
 		int count = 0;
 		int parentVal = 0;
@@ -169,7 +174,7 @@ public class UnknownNode extends absBayesNode implements IBayesNode {
 		for (Edge e : edgesFrom) {
 			if (e.getParent().getRejectionValue(shouldReject)) {
 				// set the bit associated with the parent
-				parentVal = 1 << count;
+				parentVal += 1 << count;
 			}
 			count++;
 		} // end for loop
@@ -181,8 +186,9 @@ public class UnknownNode extends absBayesNode implements IBayesNode {
 			throw new BayesNetException("parentVal = " + parentVal);
 		}
 		if (rand.nextDouble() <= prob) {
-			return true;
+			value = true;
 		}
-		return false;
+		//System.out.println("probability of UnknownNode " + getName() + " = " + prob + ", returning " + value);
+		return value;
 	}
 }

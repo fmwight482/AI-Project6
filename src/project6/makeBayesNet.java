@@ -233,6 +233,9 @@ public class makeBayesNet {
 		//printProbabilityResults();
 		//printBooleanResults();
 		
+		double expectedVal = queryNode.getTotalProbability();
+		
+		System.out.println("Expected probability is " + (100 * expectedVal) + "%");
 		rejectionSampling(numSamples);
 		likelihoodWeightedSampling(numSamples);
 	}

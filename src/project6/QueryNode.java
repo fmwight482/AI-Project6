@@ -74,20 +74,26 @@ public class QueryNode extends absBayesNode implements IBayesNode {
 		int parentVal = 0;
 		// get parent values from edgesFrom
 		// construct a value from the truth of the parents
-		for (Edge e : edgesFrom) {
-			if (e.getParent().isTrue()) {
-				// set the bit associated with the parent
-				parentVal = 1 << count;
-			}
-			count++;
-		} // end for loop
-		
-		if (parentVal >= 0 && parentVal <= cpt.size()) {
-			prob = cpt.get(parentVal);
+		if (edgesFrom.size() == 0) {
+			prob = cpt.get(0);
 		}
 		else {
-			throw new BayesNetException("parentVal = " + parentVal);
+			for (Edge e : edgesFrom) {
+				if (e.getParent().isTrue()) {
+					// set the bit associated with the parent
+					parentVal = 1 << count;
+				}
+				count++;
+			} // end for loop
+			
+			if (parentVal >= 0 && parentVal <= cpt.size()) {
+				prob = cpt.get(parentVal);
+			}
+			else {
+				throw new BayesNetException("parentVal = " + parentVal);
+			}
 		}
+		System.out.println("probability of QueryNode " + getName() + " = " + prob);
 		return prob;
 	}
 	
@@ -139,6 +145,7 @@ public class QueryNode extends absBayesNode implements IBayesNode {
 
 	@Override
 	public boolean getLikelihoodWeightedValue() throws BayesNetException {
+		boolean value = false;
 		double prob = 0;
 		int count = 0;
 		int parentVal = 0;
@@ -147,10 +154,11 @@ public class QueryNode extends absBayesNode implements IBayesNode {
 		for (Edge e : edgesFrom) {
 			if (e.getParent().getLikelihoodWeightedValue()) {
 				// set the bit associated with the parent
-				parentVal = 1 << count;
+				parentVal += 1 << count;
 			}
 			count++;
 		} // end for loop
+		//System.out.println("parentVal " + Integer.toBinaryString(parentVal));
 		
 		if (parentVal >= 0 && parentVal <= cpt.size()) {
 			prob = cpt.get(parentVal);
@@ -159,9 +167,10 @@ public class QueryNode extends absBayesNode implements IBayesNode {
 			throw new BayesNetException("parentVal = " + parentVal);
 		}
 		if (rand.nextDouble() <= prob) {
-			return true;
+			value = true;
 		}
-		return false;
+		//System.out.println("probability of QueryNode " + getName() + " = " + prob + ", returning " + value);
+		return value;
 	}
 
 	@Override
@@ -170,6 +179,7 @@ public class QueryNode extends absBayesNode implements IBayesNode {
 			// this trial will be rejected, so results are irrelevant
 			return false;
 		}
+		boolean value = false;
 		double prob = 0;
 		int count = 0;
 		int parentVal = 0;
@@ -178,7 +188,7 @@ public class QueryNode extends absBayesNode implements IBayesNode {
 		for (Edge e : edgesFrom) {
 			if (e.getParent().getRejectionValue(shouldReject)) {
 				// set the bit associated with the parent
-				parentVal = 1 << count;
+				parentVal += 1 << count;
 			}
 			count++;
 		} // end for loop
@@ -190,8 +200,10 @@ public class QueryNode extends absBayesNode implements IBayesNode {
 			throw new BayesNetException("parentVal = " + parentVal);
 		}
 		if (rand.nextDouble() <= prob) {
-			return true;
+			value = true;
 		}
-		return false;
+		
+		//System.out.println("probability of QueryNode " + getName() + " = " + prob + ", returning " + value);
+		return value;
 	}
 }
