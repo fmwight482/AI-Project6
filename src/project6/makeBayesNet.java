@@ -127,6 +127,20 @@ public class makeBayesNet {
 	}
 	
 	/**
+	 * Function to find the query node in the bayesian network
+	 * @return the query node
+	 * @throws BayesNetException
+	 */
+	static IBayesNode getQueryNode() throws BayesNetException {
+		for (IBayesNode node : nodes) {
+			if (node instanceof QueryNode) {
+				return node;
+			}
+		}
+		throw new BayesNetException("Could not find the QueryNode for the network");
+	}
+	
+	/**
 	 * print the probability that each node is true
 	 * @throws BayesNetException
 	 */
