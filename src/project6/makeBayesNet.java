@@ -19,11 +19,14 @@ public class makeBayesNet {
 	
 	/**
 	 * build the bayes net by filling in the node arraylist
-	 * @param networkFile
-	 * @param queryFile
+	 * @param networkFileName
+	 * @param queryFileName
 	 * @throws BayesNetException
 	 */
-	static void buildBayesNet(File networkFile, File queryFile) throws BayesNetException {
+	static void buildBayesNet(String networkFileName, String queryFileName) throws BayesNetException {
+		File networkFile = new File(networkFileName);
+		File queryFile = new File(queryFileName);
+		
 		BufferedReader queryReader = null;
 		BufferedReader networkReader = null;
 		
@@ -145,6 +148,27 @@ public class makeBayesNet {
 			System.out.println("Node " + bn.getName() + " is " + bn.getVal());
 		}
 	}
+	
+	/**
+	 * Run the rejection sampling algorithm with the given number of samples
+	 * @param samples
+	 * @return the probability that the query node is true
+	 * @throws BayesNetException
+	 */
+	static double rejectionSampling(int samples) throws BayesNetException {
+		
+		return 0;
+	}
+	
+	/**
+	 * Run the likelihood weighted sampling algorithm with the given number of samples
+	 * @param samples
+	 * @return the probability that the query node is true
+	 * @throws BayesNetException
+	 */
+	static double liklihoodWeightedSampling(int samples) throws BayesNetException {
+		return 0;
+	}
 
 	public static void main(String[] args) throws BayesNetException {
 		// for "real" runs, seed with time in milliseconds
@@ -157,14 +181,12 @@ public class makeBayesNet {
 		if (args.length != 3) {
 			throw new BayesNetException("makeBayesNet requires three values as input");
 		}
-		File networkFile = new File(args[0]);
-		File queryFile = new File(args[1]);
 		int numSamples = Integer.parseInt(args[2]);
 		
-		buildBayesNet(networkFile, queryFile);
+		buildBayesNet(args[0], args[1]);
 		
 		printProbabilityResults();
 		
-		//printBooleanResults();
+		printBooleanResults();
 	}
 }
