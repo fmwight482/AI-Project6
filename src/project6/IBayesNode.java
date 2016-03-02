@@ -14,7 +14,7 @@ public interface IBayesNode {
 	 * @return
 	 * @throws BayesNetException
 	 */
-	public boolean getVal() throws BayesNetException;
+	public boolean getVal(Boolean shouldReject) throws BayesNetException;
 	
 	/**
 	 * calculate the probability that the node is true given that any parent nodes are 

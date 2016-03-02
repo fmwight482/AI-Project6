@@ -101,7 +101,7 @@ public class EvidenceNode extends absBayesNode implements IBayesNode {
 	 * @return value
 	 */
 	@Override
-	public boolean getVal() throws BayesNetException {
+	public boolean getVal(Boolean shouldReject) throws BayesNetException {
 		boolean thisValue = false;
 		double prob = getLocalProbability();
 		
@@ -114,6 +114,7 @@ public class EvidenceNode extends absBayesNode implements IBayesNode {
 		}
 		else {
 			// this sample is REJECTED!!!
+			shouldReject = true;
 		}
 		return thisValue;
 		//return value;

@@ -159,7 +159,7 @@ public class makeBayesNet {
 	static void printBooleanResults() throws BayesNetException {
 		System.out.println("Printing boolean values:");
 		for (IBayesNode bn : nodes) {
-			System.out.println("Node " + bn.getName() + " is " + bn.getVal());
+			System.out.println("Node " + bn.getName() + " is " + bn.getVal(false));
 		}
 	}
 	

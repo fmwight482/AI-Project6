@@ -31,7 +31,11 @@ public class UnknownNode extends absBayesNode implements IBayesNode {
 	}
 	
 	@Override
-	public boolean getVal() throws BayesNetException {
+	public boolean getVal(Boolean shouldReject) throws BayesNetException {
+		if (shouldReject) {
+			// this trial will be rejected, so results are irrelevant
+			return false;
+		}
 		boolean thisValue = false;
 		double prob = getLocalProbability();
 		
@@ -48,7 +52,7 @@ public class UnknownNode extends absBayesNode implements IBayesNode {
 		}
 		else {
 			isSet = true;
-			return getVal();
+			return getVal(false);
 		}
 	}
 	

@@ -37,7 +37,11 @@ public class QueryNode extends absBayesNode implements IBayesNode {
 	 * @return thisValue
 	 * @throws BayesNetException
 	 */
-	public boolean getVal() throws BayesNetException{
+	public boolean getVal(Boolean shouldReject) throws BayesNetException {
+		if (shouldReject) {
+			// this trial will be rejected, so results are irrelevant
+			return false;
+		}
 		boolean thisValue = false;
 		int count = 0;
 		int parentVal =0;
@@ -57,7 +61,7 @@ public class QueryNode extends absBayesNode implements IBayesNode {
 		}
 		else {
 			isSet = true;
-			return getVal();
+			return getVal(false);
 		}
 	}
 	
